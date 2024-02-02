@@ -15,7 +15,7 @@ const Body = () => {
 
   const fetchData = async () => {
     try {
-      const resp = await axios.get("http://localhost:8800/api/newsItems");
+      const resp = await axios.get("https://red-baton-server.onrender.com/api/newsItems");
       setNewsItems(resp.data);
     } catch (error) {
       console.error("Error fetching news items:", error);
@@ -24,7 +24,7 @@ const Body = () => {
 
   const handleDelete = async (id) => {
     try {
-      const resp=await axios.put("http://localhost:8800/api/newsItems/deleteItem",{id:id});
+      const resp=await axios.put("https://red-baton-server.onrender.com/api/newsItems/deleteItem",{id:id});
       fetchData();
     } catch (error) {
       console.error("Error deleting news item:", error);
@@ -32,7 +32,7 @@ const Body = () => {
   };
 const handleItem=async(id,url)=>{
   try{
-     const resp=await axios.put("http://localhost:8800/api/newsItems/readItem",{id:id});
+     const resp=await axios.put("https://red-baton-server.onrender.com/api/newsItems/readItem",{id:id});
      window.location.href = url;
   }
   catch(error){
