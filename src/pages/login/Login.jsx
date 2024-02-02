@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./login.css";
 
 const Login = () => {
@@ -11,8 +13,7 @@ const Login = () => {
   });
 
   const { loading, error, dispatch } = useContext(AuthContext);
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -25,16 +26,16 @@ const Login = () => {
       const res = await axios.post("https://red-baton-server.onrender.com/api/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/");
+      toast.success("Login successful");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      toast.error("Login failed. Please check your credentials.");
     }
   };
 
-
   return (
-    
     <div className="login">
-      
+      <ToastContainer />
       <div className="lContainer">
         <input
           type="text"
