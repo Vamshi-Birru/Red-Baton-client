@@ -35,7 +35,7 @@ const Register = () => {
         e.preventDefault();
         dispatch({ type: "REGISTER_START" });
         try {
-            const res = await axios.post("http://localhost:8800/api/auth/register", credentials);
+            const res = await axios.post("https://red-baton-server.onrender.com/api/auth/register", credentials);
             dispatch({ type: "RESISTER_SUCCESS", payload: res.data.details });
             alert(res);
             
